@@ -1,6 +1,6 @@
 const express = require('express');
 const fortunes = require('./data/fortunes.json')
-const port = 3000;
+
 const app = express();
 
 
@@ -10,4 +10,4 @@ app.get('/fortunes', (req, res) => {
     //Showing the json data from fortunes with res.json(MyVariableThatHasJsonData)
 });
 
-app.listen(port, () => console.log(`listening on port ${port}`));
+module.exports = app;
