@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const fortunes = require('./data/fortunes.json');
@@ -46,6 +47,11 @@ app.post('/fortunes', (req,res)=> {
     const fortune = {id: newId2, message,lucky_number,spirit_animal};
 
     const new_fortunes = fortunes.concat(fortune)
+   
+    fs.writeFile('./data/fortunes.json', JSON.stringify(new_fortunes), 
+    err => console.log(err));
+   //this override the fotunes.json file with the new object
+
     res.json(new_fortunes)
 })
 
