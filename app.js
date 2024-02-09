@@ -17,12 +17,22 @@ app.get('/fortunes', (req, res) => {
 
 //get a random fortune cookie
 app.get('/fortunes/random', (req,res) => {
-    console.log("requesting random fortune");
+   // console.log("requesting random fortune");
 
     const random_index = Math.floor(Math.random() * fortunes.length);
     const r_fortune = fortunes[random_index]
     res.json(r_fortune);
 
 });
+
+app.get('/fortunes/:id', (req,res)=> {
+    //console.log(req.params);
+   res.json(fortunes.find(f => f.id == req.params.id)) ;
+   //res.json is the responde. inside we have fortunes.find 
+   // which searches and returns 1 value, the condition of the searching
+   //is inside the parenthesis , check each fortune cookie and return
+   //the one whichs id is the same as req.params.id
+});
+
 
 module.exports = app;
