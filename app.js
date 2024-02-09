@@ -38,6 +38,15 @@ app.get('/fortunes/:id', (req,res)=> {
 
 app.post('/fortunes', (req,res)=> {
     console.log(req.body)
+
+    const {message, lucky_number, spirit_animal} = req.body;
+    const fortune_ids = fortunes.map(f => f.id);
+   // const NewId = Math.max(...fortune_ids)
+    const newId2 = fortune_ids.length + 1
+    const fortune = {id: newId2, message,lucky_number,spirit_animal};
+
+    const new_fortunes = fortunes.concat(fortune)
+    res.json(new_fortunes)
 })
 
 
