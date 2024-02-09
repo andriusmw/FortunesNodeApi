@@ -1,8 +1,10 @@
 const express = require('express');
-const fortunes = require('./data/fortunes.json')
+const bodyParser = require('body-parser');
+const fortunes = require('./data/fortunes.json');
+
 
 const app = express();
-
+app.use(bodyParser.json());
 
 //---------------------------------ENDPOINTS--------------------------------------------
 //--------------------------------------------------------------------------------------
@@ -28,11 +30,15 @@ app.get('/fortunes/random', (req,res) => {
 app.get('/fortunes/:id', (req,res)=> {
     //console.log(req.params);
    res.json(fortunes.find(f => f.id == req.params.id)) ;
-   //res.json is the responde. inside we have fortunes.find 
+   //res.json is the response. inside we have fortunes.find 
    // which searches and returns 1 value, the condition of the searching
    //is inside the parenthesis , check each fortune cookie and return
    //the one whichs id is the same as req.params.id
 });
+
+app.post('/fortunes', (req,res)=> {
+    console.log(req.body)
+})
 
 
 module.exports = app;
