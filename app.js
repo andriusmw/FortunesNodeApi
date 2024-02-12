@@ -12,13 +12,15 @@ app.use(bodyParser.json());
 //*Note: instead of declaring the function here we should declarate functions on other file,
 //import that file and calling the functions here after the endpoint so we have the code clean.
 
-//get all fortunes
+//-----------------------------GET ALL FORTUNES------------------------------
 app.get('/fortunes', (req, res) => {
     console.log("data fetch");
     res.json(fortunes)
     //Showing the json data from fortunes with res.json(MyVariableThatHasJsonData)
 
 });
+
+//-------------------------GET A RANDOM FORTUNE -----------------------------
 
 //get a random fortune cookie
 app.get('/fortunes/random', (req,res) => {
@@ -31,6 +33,8 @@ app.get('/fortunes/random', (req,res) => {
    
 });
 
+//-------------------------GET FORTUNE BY ID-----------------------------------
+
 app.get('/fortunes/:id', (req,res)=> {
     //console.log(req.params);
     console.log("single object data fetch");
@@ -41,6 +45,8 @@ app.get('/fortunes/:id', (req,res)=> {
    //the one whichs id is the same as req.params.id
    
 });
+
+//-------------------------POST A FORTUNE----------------------------------------
 
 app.post('/fortunes', (req,res)=> {
     //console.log(req.body)
@@ -61,6 +67,8 @@ app.post('/fortunes', (req,res)=> {
     
 })
 
+//--------------------------PUT/EDIT A FORTUNE------------------------------------
+
 app.put('/fortunes/:id', (req,res)=>{
     const {id} = req.params;
     const {message, lucky_number, spirit_animal} = req.body;
@@ -78,6 +86,8 @@ app.put('/fortunes/:id', (req,res)=>{
    
 })
 
+//----------------------------DELETE A FORTUNE----------------------------
+
 app.delete('/fortunes/:id', (req,res) => {
 
     const { id } = req.params;
@@ -91,6 +101,6 @@ app.delete('/fortunes/:id', (req,res) => {
   
 })
 
-
+//-------------------------------------------------------------------------
 
 module.exports = app;
